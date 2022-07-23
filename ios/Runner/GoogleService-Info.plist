@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>703173319172-u5gftvabtcljf5kghanapmfbbuemcnkq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.703173319172-u5gftvabtcljf5kghanapmfbbuemcnkq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBh3IaMTCoOiG31_h76FfI9liuqk0AZrL4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>703173319172</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>br.com.lucianamcedro.jobTimer</string>
+	<key>PROJECT_ID</key>
+	<string>jobtimer-lmonteic-flutter</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jobtimer-lmonteic-flutter.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:703173319172:ios:8e2b4de8857d4d997c7351</string>
+</dict>
+</plist>

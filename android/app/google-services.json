@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "703173319172",
+    "project_id": "jobtimer-lmonteic-flutter",
+    "storage_bucket": "jobtimer-lmonteic-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703173319172:android:3aea928b48297e637c7351",
+        "android_client_info": {
+          "package_name": "br.com.lucianamcedro.job_timer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703173319172-ukftdr054st7fe43oqo0fadhnsto3ejc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGsn4cVaTHrG0SoNMXx2BE-QP9ShSF000"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703173319172-ukftdr054st7fe43oqo0fadhnsto3ejc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

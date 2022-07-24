@@ -23,7 +23,9 @@ class ProjectRepositoryImpl implements ProjectRepository {
       });
     } on IsarError catch (e, s) {
       log('Ero ao cadastrar projeto', error: e, stackTrace: s);
-      throw Failure(message: 'Ero ao cadastrar projeto');
+      throw Failure(
+        message: 'Ero ao cadastrar projeto',
+      );
     }
   }
 

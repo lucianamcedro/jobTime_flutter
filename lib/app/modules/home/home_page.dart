@@ -7,8 +7,10 @@ import 'package:job_timer/app/view_models/project_model.dart';
 
 class HomePage extends StatelessWidget {
   final HomeController controller;
-
-  const HomePage({super.key, required this.controller});
+  const HomePage({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,10 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         drawer: const Drawer(
           child: SafeArea(
-              child: ListTile(
-            title: Text('Sair'),
-          )),
+            child: ListTile(
+              title: Text('Exit'),
+            ),
+          ),
         ),
         body: SafeArea(
             child: CustomScrollView(
@@ -35,9 +38,10 @@ class HomePage extends StatelessWidget {
               toolbarHeight: 100,
               centerTitle: true,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(15),
-              )),
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(15),
+                ),
+              ),
             ),
             SliverPersistentHeader(
               delegate: HeaderProjectsMenu(),

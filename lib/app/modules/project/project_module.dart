@@ -4,6 +4,9 @@ import 'package:job_timer/app/modules/project/register/project_register_module.d
 class ProjectModule extends Module {
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/register', module: ProjectRegisterModule()),
+        ModuleRoute(
+          '/register',
+          module: ProjectRegisterModule(),
+        ),
       ];
 }

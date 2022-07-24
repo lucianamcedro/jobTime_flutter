@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "703173319172-j41c8ci51f9qlchjcjlnnemmj27hbqfu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.lucianamcedro.job_timer",
+            "certificate_hash": "662e92ee9073733c4539fbc9e9b40608ac47f01e"
+          }
+        },
+        {
           "client_id": "703173319172-ukftdr054st7fe43oqo0fadhnsto3ejc.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "703173319172-ukftdr054st7fe43oqo0fadhnsto3ejc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "703173319172-u5gftvabtcljf5kghanapmfbbuemcnkq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.lucianamcedro.jobTimer"
+              }
             }
           ]
         }

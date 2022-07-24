@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:job_timer/app/modules/project/register/controller/project_register_controller.dart';
 import 'package:validatorless/validatorless.dart';
 
 class ProjectRegisterPage extends StatefulWidget {
-  const ProjectRegisterPage({Key? key}) : super(key: key);
+  final ProjectRegisterController controller;
+
+  const ProjectRegisterPage({super.key, required this.controller});
 
   @override
   State<ProjectRegisterPage> createState() => _ProjectRegisterPageState();
@@ -63,14 +67,32 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
+              BlocSelector<ProjectRegisterController, ProjectRegisterStatus,
+                  bool>(
+                bloc: widget.controller,
+                selector: (state) => state == ProjectRegisterStatus.loading,
+                builder: (context, showloading) {
+                  return Visibility(
+                    visible: showloading,
+                    child: const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
+                  );
+                },
+              ),
               SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 49,
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final formValid =
                             _formKey.currentState?.validate() ?? false;
-                        if (formValid) {}
+                        if (formValid) {
+                          final name = _nameEC.text;
+                          final estimate = int.parse(_estimateEC.text);
+
+                          await widget.controller.register(name, estimate);
+                        }
                       },
                       child: const Text('Salvar')))
             ],

@@ -9,15 +9,15 @@ part of 'projects.dart';
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, unused_local_variable
 
 extension GetProjectsCollection on Isar {
-  IsarCollection<Projects> get projects => getCollection();
+  IsarCollection<Projects> get projectss => getCollection();
 }
 
 const ProjectsSchema = CollectionSchema(
   name: 'Projects',
   schema:
-      '{"name":"Projects","idName":"id","properties":[{"name":"name","type":"String"},{"name":"status","type":"Long"}],"indexes":[],"links":[{"name":"tasks","target":"ProjectsTask"}]}',
+      '{"name":"Projects","idName":"id","properties":[{"name":"estimate","type":"Long"},{"name":"name","type":"String"},{"name":"status","type":"Long"}],"indexes":[],"links":[{"name":"tasks","target":"ProjectsTask"}]}',
   idName: 'id',
-  propertyIds: {'name': 0, 'status': 1},
+  propertyIds: {'estimate': 0, 'name': 1, 'status': 2},
   listProperties: {},
   indexIds: {},
   indexValueTypes: {},
@@ -62,28 +62,32 @@ void _projectsSerializeNative(
     List<int> offsets,
     AdapterAlloc alloc) {
   var dynamicSize = 0;
-  final value0 = object.name;
-  final _name = IsarBinaryWriter.utf8Encoder.convert(value0);
+  final value0 = object.estimate;
+  final _estimate = value0;
+  final value1 = object.name;
+  final _name = IsarBinaryWriter.utf8Encoder.convert(value1);
   dynamicSize += (_name.length) as int;
-  final value1 = _projectsProjectStatusConverter.toIsar(object.status);
-  final _status = value1;
+  final value2 = _projectsProjectStatusConverter.toIsar(object.status);
+  final _status = value2;
   final size = staticSize + dynamicSize;
 
   rawObj.buffer = alloc(size);
   rawObj.buffer_length = size;
   final buffer = IsarNative.bufAsBytes(rawObj.buffer, size);
   final writer = IsarBinaryWriter(buffer, staticSize);
-  writer.writeBytes(offsets[0], _name);
-  writer.writeLong(offsets[1], _status);
+  writer.writeLong(offsets[0], _estimate);
+  writer.writeBytes(offsets[1], _name);
+  writer.writeLong(offsets[2], _status);
 }
 
 Projects _projectsDeserializeNative(IsarCollection<Projects> collection, int id,
     IsarBinaryReader reader, List<int> offsets) {
   final object = Projects();
+  object.estimate = reader.readLong(offsets[0]);
   object.id = id;
-  object.name = reader.readString(offsets[0]);
+  object.name = reader.readString(offsets[1]);
   object.status =
-      _projectsProjectStatusConverter.fromIsar(reader.readLong(offsets[1]));
+      _projectsProjectStatusConverter.fromIsar(reader.readLong(offsets[2]));
   _projectsAttachLinks(collection, id, object);
   return object;
 }
@@ -94,8 +98,10 @@ P _projectsDeserializePropNative<P>(
     case -1:
       return id as P;
     case 0:
-      return (reader.readString(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 1:
+      return (reader.readString(offset)) as P;
+    case 2:
       return (_projectsProjectStatusConverter.fromIsar(reader.readLong(offset)))
           as P;
     default:
@@ -106,6 +112,7 @@ P _projectsDeserializePropNative<P>(
 dynamic _projectsSerializeWeb(
     IsarCollection<Projects> collection, Projects object) {
   final jsObj = IsarNative.newJsObject();
+  IsarNative.jsObjectSet(jsObj, 'estimate', object.estimate);
   IsarNative.jsObjectSet(jsObj, 'id', object.id);
   IsarNative.jsObjectSet(jsObj, 'name', object.name);
   IsarNative.jsObjectSet(
@@ -116,6 +123,8 @@ dynamic _projectsSerializeWeb(
 Projects _projectsDeserializeWeb(
     IsarCollection<Projects> collection, dynamic jsObj) {
   final object = Projects();
+  object.estimate =
+      IsarNative.jsObjectGet(jsObj, 'estimate') ?? double.negativeInfinity;
   object.id = IsarNative.jsObjectGet(jsObj, 'id');
   object.name = IsarNative.jsObjectGet(jsObj, 'name') ?? '';
   object.status = _projectsProjectStatusConverter.fromIsar(
@@ -126,6 +135,9 @@ Projects _projectsDeserializeWeb(
 
 P _projectsDeserializePropWeb<P>(Object jsObj, String propertyName) {
   switch (propertyName) {
+    case 'estimate':
+      return (IsarNative.jsObjectGet(jsObj, 'estimate') ??
+          double.negativeInfinity) as P;
     case 'id':
       return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
     case 'name':
@@ -206,6 +218,54 @@ extension ProjectsQueryWhere on QueryBuilder<Projects, Projects, QWhereClause> {
 
 extension ProjectsQueryFilter
     on QueryBuilder<Projects, Projects, QFilterCondition> {
+  QueryBuilder<Projects, Projects, QAfterFilterCondition> estimateEqualTo(
+      int value) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'estimate',
+      value: value,
+    ));
+  }
+
+  QueryBuilder<Projects, Projects, QAfterFilterCondition> estimateGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'estimate',
+      value: value,
+    ));
+  }
+
+  QueryBuilder<Projects, Projects, QAfterFilterCondition> estimateLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'estimate',
+      value: value,
+    ));
+  }
+
+  QueryBuilder<Projects, Projects, QAfterFilterCondition> estimateBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'estimate',
+      lower: lower,
+      includeLower: includeLower,
+      upper: upper,
+      includeUpper: includeUpper,
+    ));
+  }
+
   QueryBuilder<Projects, Projects, QAfterFilterCondition> idIsNull() {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.isNull,
@@ -427,6 +487,14 @@ extension ProjectsQueryLinks
 
 extension ProjectsQueryWhereSortBy
     on QueryBuilder<Projects, Projects, QSortBy> {
+  QueryBuilder<Projects, Projects, QAfterSortBy> sortByEstimate() {
+    return addSortByInternal('estimate', Sort.asc);
+  }
+
+  QueryBuilder<Projects, Projects, QAfterSortBy> sortByEstimateDesc() {
+    return addSortByInternal('estimate', Sort.desc);
+  }
+
   QueryBuilder<Projects, Projects, QAfterSortBy> sortById() {
     return addSortByInternal('id', Sort.asc);
   }
@@ -454,6 +522,14 @@ extension ProjectsQueryWhereSortBy
 
 extension ProjectsQueryWhereSortThenBy
     on QueryBuilder<Projects, Projects, QSortThenBy> {
+  QueryBuilder<Projects, Projects, QAfterSortBy> thenByEstimate() {
+    return addSortByInternal('estimate', Sort.asc);
+  }
+
+  QueryBuilder<Projects, Projects, QAfterSortBy> thenByEstimateDesc() {
+    return addSortByInternal('estimate', Sort.desc);
+  }
+
   QueryBuilder<Projects, Projects, QAfterSortBy> thenById() {
     return addSortByInternal('id', Sort.asc);
   }
@@ -481,6 +557,10 @@ extension ProjectsQueryWhereSortThenBy
 
 extension ProjectsQueryWhereDistinct
     on QueryBuilder<Projects, Projects, QDistinct> {
+  QueryBuilder<Projects, Projects, QDistinct> distinctByEstimate() {
+    return addDistinctByInternal('estimate');
+  }
+
   QueryBuilder<Projects, Projects, QDistinct> distinctById() {
     return addDistinctByInternal('id');
   }
@@ -497,6 +577,10 @@ extension ProjectsQueryWhereDistinct
 
 extension ProjectsQueryProperty
     on QueryBuilder<Projects, Projects, QQueryProperty> {
+  QueryBuilder<Projects, int, QQueryOperations> estimateProperty() {
+    return addPropertyNameInternal('estimate');
+  }
+
   QueryBuilder<Projects, int?, QQueryOperations> idProperty() {
     return addPropertyNameInternal('id');
   }

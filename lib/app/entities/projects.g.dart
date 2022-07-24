@@ -9,7 +9,7 @@ part of 'projects.dart';
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, unused_local_variable
 
 extension GetProjectsCollection on Isar {
-  IsarCollection<Projects> get projectss => getCollection();
+  IsarCollection<Projects> get projects => getCollection();
 }
 
 const ProjectsSchema = CollectionSchema(

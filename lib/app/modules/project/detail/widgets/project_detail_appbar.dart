@@ -64,7 +64,10 @@ class _NewTasks extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        await Modular.to.pushNamed('/project/task', arguments: projectModel);
+        await Modular.to.pushNamed(
+          '/project/task/',
+          arguments: projectModel,
+        );
         Modular.get<ProjectDetailController>().updateProject();
       },
       child: Row(

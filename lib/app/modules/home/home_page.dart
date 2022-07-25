@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
         drawer: const Drawer(
           child: SafeArea(
             child: ListTile(
-              title: Text('Exit'),
+              title: Text('Sair'),
             ),
           ),
         ),

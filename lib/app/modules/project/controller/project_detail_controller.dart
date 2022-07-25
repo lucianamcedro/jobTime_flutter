@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
@@ -19,8 +21,23 @@ class ProjectDetailController extends Cubit<ProjectDetailState> {
         projectModel: projectModel, status: ProjectDetailStatus.complete));
   }
 
-  void updateProject() async {
+  Future<void> updateProject() async {
     final project = await _projectService.findById(state.projectModel!.id!);
-    emit(state.copyWith(projectModel: project));
+    emit(state.copyWith(
+      projectModel: project,
+      status: ProjectDetailStatus.complete,
+    ));
+  }
+
+  Future<void> finishProject() async {
+    try {
+      emit(state.copyWith(status: ProjectDetailStatus.loading));
+      final projectId = state.projectModel!.id!;
+      await _projectService.finish(projectId);
+      updateProject();
+    } catch (e, s) {
+      log('Erro ao finalizar projeto', error: e, stackTrace: s);
+      emit(state.copyWith(status: ProjectDetailStatus.failure));
+    }
   }
 }

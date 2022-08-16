@@ -1,16 +1,19 @@
-# job_timer
+# Job Timer :technologist:
 
-A new Flutter project.
+Aplicatibo criado para controle de horas e gerenciar seus trabalhos.
+Foram utilizadas os seguintes pacotes para a criação:
 
-## Getting Started
+- Flutter Modular
+- Firebase
+- Asuka
+- Google Sign
+- Isar
 
-This project is a starting point for a Flutter application.
+<p align="center">
 
-A few resources to get you started if this is your first Flutter project:
+![JobTimer](https://user-images.githubusercontent.com/86168060/185002378-3a85dac0-76cc-46e2-addb-8b5d51b6c4fb.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+</p>
